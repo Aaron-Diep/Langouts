@@ -1,0 +1,44 @@
+//BUTTONS
+$btn-border-radius:20px;
+$btn-font-size:10px;
+
+.btn{
+	background-color: $themeColor1;
+	border-radius: $btn-border-radius;
+	box-shadow: 0 1px 2px #CCCCCC;
+	color: $themeColor2;
+	display: inline-block;
+	font-size: $btn-font-size;
+	margin:1px;
+	overflow: hidden;
+	text-align:center;
+	text-decoration: none;
+	text-transform: uppercase;
+	@include transition($transition-default);
+	vertical-align: middle;
+	&:hover{
+		text-decoration: none;
+		background-color:darken($themeColor1,5%);
+	}
+	&:hover .btnTxt,
+	&:focus .btnTxt,
+	&:active .btnTxt{
+		outline:none;
+	}
+	.btnTxt {
+	  	display: inline-block;
+	  	padding: 8px 20px;
+	  	vertical-align: middle;
+	}
+	&.hasIconLeft .btnTxt{
+		padding:8px 20px 8px 5px;
+  	}
+	&.iconList .icon {
+	  	background: url("../images/icons/icons-sprite.png") no-repeat scroll 0 -112px transparent;
+	  	display: inline-block;
+	  	height: 20px;
+	  	margin: 0 0 0 20px;
+	  	vertical-align: middle;
+	  	width: 20px;
+	}
+}

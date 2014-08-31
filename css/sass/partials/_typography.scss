@@ -1,0 +1,85 @@
+//FONTS
+$font-arial: Arial,sans-serif;
+$font-georgia: Georgia, Cambria, "Times New Roman", Times, serif;
+$font-helvetica: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-verdana: Verdana, Geneva, sans-serif;
+
+$font-base-size:12;
+$font-base-lineheight:130%;
+$font-margin-bot:10px;
+$font-min-size:10px;
+
+body{
+	font-family:$font-arial;
+	@include font-size($font-base-size);
+	line-height:$font-base-lineheight;
+}
+
+h1 {
+  	color: $themeColor1;
+  	@include font-size($font-base-size+18);
+  	font-weight: bold;
+  	margin-bottom: $font-margin-bot;
+  	line-height:$font-base-lineheight;
+}
+
+h2{
+	color: $themeColor1;
+  	@include font-size($font-base-size+12);
+  	font-weight: bold;
+  	margin-bottom: $font-margin-bot;
+  	line-height:$font-base-lineheight;
+}
+
+h3{
+	color: $themeColor2;
+  	@include font-size($font-base-size+10);
+  	font-weight: bold;
+  	margin-bottom: $font-margin-bot;
+  	line-height:$font-base-lineheight;
+}
+
+h4{
+	color: $themeColor2;
+  	@include font-size($font-base-size+6);
+  	font-weight: bold;
+  	margin-bottom: $font-margin-bot;
+  	line-height:$font-base-lineheight;
+}
+
+h5{
+	color: $themeColor3;
+  	@include font-size($font-base-size+2);
+  	font-weight: bold;
+  	margin-bottom: $font-margin-bot;
+  	line-height:$font-base-lineheight;
+}
+
+h6{
+	color: $themeColor3;
+  	font-size: $font-base-size;
+  	font-weight: bold;
+  	margin-bottom: $font-margin-bot;
+  	line-height:$font-base-lineheight;
+}
+
+a{
+	@include links($themeColor1);
+}
+
+h1 a,
+h2 a,
+h3 a,
+h4 a{
+	text-decoration:none!important;
+	color:inherit;
+}
+
+p{
+	margin-bottom: $font-margin-bot;
+}
+
+small{
+	font-size:$font-min-size;
+}
+

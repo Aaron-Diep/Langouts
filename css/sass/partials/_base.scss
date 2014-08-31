@@ -1,0 +1,26 @@
+//BREAKPOINTS
+$breakpoint_min_1:320px;	//320+
+$breakpoint_min_2:480px;	//480+
+$breakpoint_min_3:768px;	//768+
+$breakpoint_min_4:1024px;	//1024+
+
+$breakpoint_max_1:319px;	//0-319
+$breakpoint_max_2:479px;	//0-479
+$breakpoint_max_3:767px;	//0-767
+$breakpoint_max_4:1023px;	//0-1023
+
+// THEME COLORS
+$bgColor:#ffffff;
+$bgColor_lgrey:#f6f6f6;
+$themeColor1:#019A7E;
+$themeColor2:#FFD300;
+$themeColor3:#968410;
+$txtColor:#000000;
+$borderColor:#999999;
+$errorMsgColor:#ff0000;
+
+
+// MISC
+$padding-size:10px;
+$transition-default:all 0.25s;
+$radius-default:10px;

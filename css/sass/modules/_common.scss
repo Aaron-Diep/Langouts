@@ -1,0 +1,109 @@
+
+@mixin opacity($val: 100){
+  	opacity:($val / 100);
+  	filter:alpha(opacity=$val);
+}
+
+//transition helper
+@mixin transition($effect){
+	@include prefix(transition, $effect);
+}
+
+
+@function black($opacity){
+    @return rgba(0,0,0,$opacity)
+}
+
+@function white($opacity){
+    @return rgba(255,255,255,$opacity)
+}
+
+@mixin alpha-attribute($attribute, $color, $background) {
+  	$percent: alpha($color) * 100%;
+  	$opaque: opacify($color, 1);
+  	$solid-color: mix($opaque, $background, $percent);
+  	#{$attribute}: $solid-color;
+  	#{$attribute}: $color;
+}
+
+//emboss effect for boxes
+@mixin box-emboss($opacity, $opacity2){
+    box-shadow:white($opacity) 0 1px 0, inset black($opacity2) 0 1px 0;
+}
+
+//produce letterpress effect on fonts
+@mixin letterpress($opacity){
+    text-shadow:white($opacity) 0 1px 0;
+}
+
+//hide text
+@mixin hide-text{
+    font: 0/0 a;
+    text-shadow: none;
+    color: transparent;
+}
+
+//basic link setup
+@mixin links($color:$themeColor1, $underlineHover:true){
+	color:$color;
+	text-decoration: if($underlineHover,none, underline);
+
+	&:hover,
+	&:active,
+	&:focus{
+		color: if((lightness($color)<50%), lighten($color, 10%), darken($color, 20%));
+		text-decoration: if($underlineHover,underline, none);
+	}
+}
+
+//inline block
+@mixin inline-block($valign:top){
+	display: inline-block;
+  	vertical-align: $valign;
+  	*display: inline;
+  	*vertical-align: auto;
+  	*zoom: 1;
+}
+
+//clear fix
+@mixin clearfix(){
+	 display: inline-block;
+    *zoom: 1;
+
+	&:before,
+    &:after {
+        content: "";
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+}
+
+//px to rem font size
+@mixin font-size($size: 12, $base: 16) {
+  	font-size: $size; // fallback for old browsers
+  	font-size: ($size / $base) * 1rem;
+}
+
+//css triangle to be use on icon spans or pseudo-element
+@mixin triangle($dir, $size, $color) {
+	border: $size transparent solid;
+	font-size:0;
+	height:0;
+	width:0;
+
+    @if ($dir == "top" or $dir == "up") {
+        border-bottom-color: $color;
+    }
+    @else if ($dir == "right" or $dir == "after") {
+        border-left-color: $color;
+    }
+    @else if ($dir == "bottom" or $dir == "down") {
+        border-top-color: $color;
+    }
+    @else if ($dir == "left" or $dir == "before") {
+        border-right-color: $color;
+    }
+
+}

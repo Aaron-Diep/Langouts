@@ -1,0 +1,38 @@
+/////////////////////////////////////  PLACEHOLDER  /////////////////////////////////////////////////////
+%fmt-list-li-after{
+	content: "\bb";
+	float: left;
+	margin-left: -15px;
+	margin-top: -1px;
+}
+
+
+.cms-entry{
+	ul{
+		margin-bottom: 10px;
+		li{
+			list-style: disc outside none;
+			margin-left: 15px;
+			@include font-size($font-base-size);
+		}
+		&.fmt-list{
+			li{
+				list-style: none;
+				&:before{
+					@extend %fmt-list-li-after;
+				}
+			}
+		}
+	}
+}
+
+.fmt-list{
+	margin-bottom: 10px;
+	li{
+		list-style: none;
+		margin-left: 15px;
+		&:before{
+			@extend %fmt-list-li-after;
+		}
+	}
+}

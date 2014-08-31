@@ -1,0 +1,54 @@
+/////////////////////////////////  HELPERS //////////////////////////////////////////////
+
+//prefix helper
+@mixin prefix($property, $value){
+	$prefixes: -webkit-, -moz-, -ms-, -o-, '';
+	@each $prefix in $prefixes{
+		#{$prefix}#{$property}:$value;
+	}
+}
+
+//string replace
+//Author: http://hugogiraudel.com/2014/01/13/sass-string-replacement-function/
+//edited by Aaron Diep 18/3/2014
+@function str-replace($string, $old, $new, $case-sensitive:true, $global:false) {
+
+	//handle wrong arg
+	@if type-of($string) != string or type-of($old) != string or type-of($new) != string {
+    	@warn "One of the 3 arguments is not a string.";
+    	@return $string;
+  	}
+
+	//handle infinite recursion
+  	@if($global == true) {
+  		@if(str-index($new, $old) != 0){
+	   	 	@warn "The string to be replaced is contained in the new string. Infinite recursion avoided.";
+	    	@return $string;
+    	}
+  	}
+
+	//get index of
+  	$index: if(
+  		not $case-sensitive,
+  		str-index(to-lower-case($string), to-lower-case($old)),
+  		str-index($string, $old)
+	);
+
+  	@if $index > 0 and $new != $old {
+    	$new-string: quote(str-slice($string, 1, $index - 1));
+		@for $i from $index through str-length($string) {
+		  	@if $i < $index or $i >= $index + str-length($old) {
+		    	$new-string: $new-string + str-slice($string, $i, $i);
+		  	}
+		}
+		$new-string: str-insert($new-string, $new, $index);
+
+		//return/recursive call
+		@return if($global, str-replace($new-string, $old, $new), $new-string);
+  	}
+
+  	//return orginal string
+  	@return $string;
+}
+
+

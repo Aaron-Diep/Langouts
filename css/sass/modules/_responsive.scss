@@ -1,0 +1,71 @@
+///***********************
+// *  Responsive mixins  *
+// *  Authur: Aaron Diep *
+// ***********************/
+
+
+//*  	MIXIN: 			respond-to()
+//*  	VERSION: 		1.1
+//*  	DATE: 			4/2/2014
+//*  	DESC: 			This mixin provide an interface to set a property and its attribute base on the media/device that is passed in.
+//*        				This allow the mixin to be use on any property that needs to different attributes base on the media/device.
+
+//* 	NOTE: 			This is only useful when you want to output different css files for different devices. ie: mobile.css, ipad.css, desktop.css
+
+//*  	@media: 		The media/device to respond to.
+//*  	@prop: 			property to set.
+//*  	@desktopAttr: 	The attribute for desktop
+//*  	@ipadAttr: 		The attribute for ipad
+//*  	@mobileAttr: 	The attribute for mobile
+//*
+//*  	EXAMPLE1: 		INPUT:
+//*								respond-to("mobile", color, #FFFFFF, #EEEEEE, #DDDDDD);
+//* 					OUTPUT:
+//* 							color:#EEEEEE;
+//*
+//*  	EXAMPLE2: 		INPUT:
+//* 							$device:"desktop";
+//*								respond-to($device, color, #FFFFFF, #EEEEEE, #DDDDDD);
+//* 					OUTPUT:
+//* 							color:#FFFFF;
+
+@mixin respond-to($media, $prop, $desktopAttr, $ipadAttr, $mobileAttr){
+	@if($media == "desktop"){
+		#{$prop}:$desktopAttr;
+	}
+	@else if($media == "ipad"){
+		#{$prop}:$ipadAttr;
+	}
+	@else if($media == "mobile"){
+		#{$prop}:$mobileAttr;
+	}
+}
+
+
+//*  	MIXIN: 			breakpoint
+//*  	VERSION:		1.0
+//*  	DATE: 			12/2/2014
+//*		DESC: 			Output a media query block that specify a breakpoint, min/max width and mediatype.
+
+//* 	@breakat: 		pixel width value where breakpoint happens
+//* 	@isMax: 		boolean flag to switch between max-width and min-width
+//* 	@media: 		the media type for this query. all/print/screen
+//* 	@content: 		The content inside of the breakpoint mixin call
+
+//* 	EXAMPLE1: 		INPUT:  @include breakpoint(320px, false, all){width:50%; float:left; }
+//* 					OUTPUT: @media all and (min-width:320px){width:50%; float:left;}
+
+//* 	EXAMPLE2: 		INPUT:  @include breakpoint(480px, true, screen){width:50%; float:left; }
+//* 					OUTPUT: @media screen and (max-width:480px){width:50%; float:left;}
+
+//* 	EXAMPLE3: 		INPUT:  @include breakpoint(768px){width:50%; float:left; }
+//* 					OUTPUT: @media all and (min-width:768px){width:50%; float:left;}
+
+@mixin breakpoint($breakat, $isMax:false, $media:all){
+	@if($isMax){
+		@media #{$media} and (max-width: $breakat) { @content; }
+	}
+	@else{
+		@media #{$media} and (min-width: $breakat) { @content; }
+	}
+}

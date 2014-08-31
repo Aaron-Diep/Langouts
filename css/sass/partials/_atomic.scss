@@ -1,0 +1,74 @@
+
+/////////////////////////////////////////	COMMON ATOMIC CLASSES	///////////////////////////////////////
+.f-left{
+	float:left!important;
+}
+
+.f-right{
+	float:right!important;
+}
+
+.clear{
+	clear:both;
+}
+
+.aRight{
+  text-align: right!important;
+}
+
+.aLeft{
+  text-align: left!important;
+}
+
+.aCenter{
+  text-align: center!important;
+}
+
+.uppercase{
+	text-transform: uppercase;
+}
+
+.capitalize{
+	text-transform: capitalize;
+}
+
+.hideTxt{
+	text-indent: -9999px;
+}
+
+.mRight{
+    margin-right:$padding-size;
+}
+
+.nomargin{
+	margin:0!important;
+}
+
+.hide{
+	display: none!important;
+}
+
+.half{
+    width:50%;
+    float:left;
+}
+
+@for $i from 1 through 10{
+	.wp#{$i}0p{
+		width:#{$i}0%!important;
+	}
+}
+
+/////////////////////////////  PLACEHOLDERS  //////////////////////////////////////////////
+
+//placeholder class to be extended
+%inline-block {
+  	@include inline-block();
+}
+
+%clearfix{
+	@include clearfix();
+}
+
+/////////////////////////////  COMMON  //////////////////////////////////////////////
+
