@@ -1,27 +1,46 @@
 var gulp 		= require("gulp"),
-	sass 		= require('gulp-sass'),
+	sass 		= require('gulp-ruby-sass'),
 	uglify	 	= require('gulp-uglify'),
 	minifyCSS 	= require('gulp-minify-css'),
-	concat 		= require('gulp-concat');
+	concat 		= require('gulp-concat'),
+	livereload 	= require('gulp-livereload');
+
+var paths = {
+		src:{
+			css:"css/sass/*.scss",
+			js:"js/*.js"
+		},
+		dest:{
+			css:"dist/css",
+			js:"dist/js"
+		}
+	}
 
 
 gulp.task('javascript', function(){
-	return gulp.src('./js/*.js')
+	return gulp.src(paths.src.js)
 		.pipe(uglify())
-		.pipe(gulp.dest('./dist/min'))
+		.pipe(gulp.dest(paths.dest.js))
 });
 
-gulp.task('css', function(){
-	return gulp.src('./css/*.css')
+gulp.task('sass', function(){
+	return gulp.src(paths.src.css)
+		.pipe(sass())
 		.pipe(minifyCSS())
 		.pipe(gulp.dest('./dist/css'))
+		.pipe(livereload());
 })
 
 
 
 gulp.task('default', function(){
-	gulp.run('css');
-	gulp.watch('./css/*.css', function(){
-		gulp.run('css');
-	})
+
+	gulp.run('sass');
+	gulp.run('javascript');
+	gulp.watch(paths.src.css, function(){
+		gulp.run('sass');
+	});
+	gulp.watch(paths.src.js, function(){
+		gulp.run('javascript');
+	});
 });
